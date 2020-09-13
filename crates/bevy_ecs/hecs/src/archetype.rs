@@ -498,6 +498,7 @@ pub struct TypeInfo {
     id: TypeId,
     layout: Layout,
     drop: unsafe fn(*mut u8),
+    name: &'static str,
 }
 
 impl TypeInfo {
@@ -511,6 +512,7 @@ impl TypeInfo {
             id: TypeId::of::<T>(),
             layout: Layout::new::<T>(),
             drop: drop_ptr::<T>,
+            name: type_name::<T>(),
         }
     }
 
@@ -524,6 +526,11 @@ impl TypeInfo {
     #[inline]
     pub fn layout(&self) -> Layout {
         self.layout
+    }
+
+    /// Name of the type
+    pub fn name(&self) -> &'static str {
+        self.name
     }
 
     pub(crate) unsafe fn drop(&self, data: *mut u8) {

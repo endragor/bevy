@@ -1,0 +1,25 @@
+[package]
+name = "bevy_animation"
+version = "0.1.0"
+edition = "2018"
+authors = [
+    "Bevy Contributors <bevyengine@gmail.com>",
+    "Ruslan Mustakov <r.mustakov@gmail.com>",
+]
+description = "Animation support for Bevy Engine"
+homepage = "https://bevyengine.org"
+repository = "https://github.com/bevyengine/bevy"
+license = "MIT"
+keywords = ["bevy"]
+
+[dependencies]
+dashmap = "3.11"
+
+# bevy
+bevy_app = { path = "../bevy_app", version = "0.1" }
+bevy_ecs = { path = "../bevy_ecs", version = "0.1" }
+bevy_tasks = { path = "../bevy_tasks", version = "0.1" }
+bevy_interpolation = { path = "../bevy_interpolation", version = "0.1" }
+bevy_transform = { path = "../bevy_transform", version = "0.1" }
+bevy_asset = { path = "../bevy_asset", version = "0.1" }
+bevy_core = { path = "../bevy_core", version = "0.1" }

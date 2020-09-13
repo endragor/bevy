@@ -18,10 +18,10 @@ use core::{
     fmt::Debug,
     ops::{Deref, DerefMut},
     ptr::NonNull,
-    sync::atomic::{AtomicUsize, Ordering},
+    sync::atomic::{AtomicUsize, Ordering}, any::Any,
 };
 
-use crate::{archetype::Archetype, Component, MissingComponent};
+use crate::{archetype::Archetype, Component, MissingComponent, TypeInfo};
 
 pub struct AtomicBorrow(AtomicUsize);
 
@@ -220,6 +220,11 @@ impl<'a> EntityRef<'a> {
     /// Panics if the component is already borrowed from another entity with the same components.
     pub fn get_mut<T: Component>(&self) -> Option<RefMut<'a, T>> {
         Some(unsafe { RefMut::new(self.archetype?, self.index).ok()? })
+    }
+
+    pub unsafe fn get_unchecked_mut_any(&self, type_info: &TypeInfo) -> Option<&mut dyn Any> {
+        let raw = self.archetype?.get_dynamic(type_info.type_id(), type_info.layout().size(), self.index)?;
+        Some(&mut *(raw.as_ptr() as *mut dyn Any))
     }
 }
 

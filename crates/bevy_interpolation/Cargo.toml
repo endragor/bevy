@@ -1,0 +1,17 @@
+[package]
+name = "bevy_interpolation"
+version = "0.1.0"
+edition = "2018"
+authors = [
+    "Bevy Contributors <bevyengine@gmail.com>",
+    "Ruslan Mustakov <r.mustakov@gmail.com>",
+]
+description = "Interpolation for Bevy Engine"
+homepage = "https://bevyengine.org"
+repository = "https://github.com/bevyengine/bevy"
+license = "MIT"
+keywords = ["bevy"]
+
+[dependencies]
+bevy_math = { path = "../bevy_math", version = "0.1" }
+bevy_transform = { path = "../bevy_transform", version = "0.1" }

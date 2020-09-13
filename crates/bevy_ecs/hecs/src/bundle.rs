@@ -71,6 +71,11 @@ impl MissingComponent {
     pub fn new<T: Component>() -> Self {
         Self(type_name::<T>())
     }
+
+    /// Construct an error representing the missing type by name.
+    pub fn from_name(type_name: &'static str) -> Self {
+        Self(type_name)
+    }
 }
 
 impl fmt::Display for MissingComponent {
